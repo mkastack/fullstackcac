@@ -122,15 +122,15 @@ export function SermonsSection() {
         </div>
 
         {/* View All Button */}
-        <div className="flex justify-center gap-4 mx-auto">
+        <div className="flex justify-center gap-4 mx-auto sm:flex-col">
           <Button variant="churchPrimary" size="lg" asChild>
-            <Link to="/sermons/video" className="flex items-center gap-2 sm:size-1">
+            <Link to="/sermons/video" className="flex items-center gap-2">
               <Play className="w-5 h-5" />
               Video Sermons
             </Link>
           </Button>
           <Button variant="churchOutline" size="lg" asChild>
-            <Link to="/sermons/audio" className="flex items-center gap-2 sm:size-1">
+            <Link to="/sermons/audio" className="flex items-center gap-2">
               <Mic className="w-5 h-5" />
               Audio Sermons
             </Link>
