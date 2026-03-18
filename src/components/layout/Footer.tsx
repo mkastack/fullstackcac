@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Youtube, Instagram, Phone, Mail, MapPin } from "lucide-react";
-import churchLogo from "@/assets/church-logo.png";
+import churchLogo from "/church-logo.png"; // Replace with actual logo path
 
 const quickLinks = [
   { name: "About Us", path: "/about" },

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import churchLogo from "@/assets/church-logo.png";
+import churchLogo from "/church-logo.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
