@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from '../../lib/supabase';
 import { Facebook, Youtube, Instagram, Phone, Mail, MapPin, Send, MessageCircle, ArrowUp } from "lucide-react";
 import churchLogo from "/church-logo.png"; // Replace with actual logo path
 
@@ -27,8 +29,42 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const [footerEmail, setFooterEmail] = useState('');
+  const [footerStatus, setFooterStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleFooterSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!footerEmail) return;
+
+    setFooterStatus('loading');
+
+    const { data: existing } = await supabase.from('members').select('id').eq('email', footerEmail).single();
+
+    if (existing) {
+      setFooterStatus('success');
+      setFooterEmail('');
+      setTimeout(() => setFooterStatus('idle'), 3000);
+      return;
+    }
+
+    const { error } = await supabase.from('members').insert([{
+      full_name: 'Newsletter Subscriber',
+      email: footerEmail,
+      category: 'Visitor',
+      status: 'Active'
+    }]);
+
+    if (error) {
+      setFooterStatus('error');
+    } else {
+      setFooterStatus('success');
+      setFooterEmail('');
+    }
+    setTimeout(() => setFooterStatus('idle'), 3000);
   };
 
   return (
@@ -143,16 +179,32 @@ export function Footer() {
               </div>
 
               <p className="text-white/60 text-sm mb-4 font-body">Subscribe for updates.</p>
-              <div className="relative flex items-center mb-8">
+              <form onSubmit={handleFooterSubscribe} className="relative flex items-center mb-2">
                 <input
                   type="email"
+                  value={footerEmail}
+                  onChange={(e) => setFooterEmail(e.target.value)}
+                  disabled={footerStatus === 'loading'}
+                  required
                   placeholder="Email Address"
-                  className="w-full bg-white/10 rounded-full py-3 px-5 pr-12 text-sm border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-church-gold"
+                  className="w-full bg-white/10 rounded-full py-3 px-5 pr-12 text-sm border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-church-gold disabled:opacity-60"
                 />
-                <button aria-label="Subscribe" className="absolute right-1.5 w-9 h-9 bg-church-gold rounded-full flex items-center justify-center text-white hover:bg-church-gold-light transition-colors shadow-sm">
+                <button 
+                  type="submit"
+                  disabled={footerStatus === 'loading'}
+                  aria-label="Subscribe" 
+                  className="absolute right-1.5 w-9 h-9 bg-church-gold rounded-full flex items-center justify-center text-white hover:bg-church-gold-light transition-colors shadow-sm disabled:opacity-60"
+                >
                   <Send className="w-4 h-4 ml-0.5" />
                 </button>
-              </div>
+              </form>
+              {footerStatus === 'success' && (
+                <p className="text-green-400 text-xs font-semibold mb-4">Subscribed successfully!</p>
+              )}
+              {footerStatus === 'error' && (
+                <p className="text-red-400 text-xs font-semibold mb-4">Failed. Please try again.</p>
+              )}
+              {footerStatus === 'idle' && <div className="mb-6" />}
             </div>
 
             {/* Service Times */}

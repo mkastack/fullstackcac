@@ -23,6 +23,8 @@ const defaultCategoryColor = "bg-muted text-muted-foreground";
 export default function EventsPage() {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState('');
+  const [subscribeStatus, setSubscribeStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     async function fetchEvents() {
@@ -38,6 +40,40 @@ export default function EventsPage() {
     }
     fetchEvents();
   }, []);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setSubscribeStatus('loading');
+    
+    // Check if member already exists
+    const { data: existing } = await supabase.from('members').select('id').eq('email', email).single();
+    
+    if (existing) {
+      setSubscribeStatus('success');
+      setEmail('');
+      setTimeout(() => setSubscribeStatus('idle'), 3000);
+      return;
+    }
+
+    const { error } = await supabase.from('members').insert([{
+      full_name: 'Newsletter Subscriber',
+      email: email,
+      category: 'Visitor',
+      status: 'Active'
+    }]);
+
+    if (error) {
+      console.error('Subscription error:', error);
+      setSubscribeStatus('error');
+    } else {
+      setSubscribeStatus('success');
+      setEmail('');
+    }
+
+    setTimeout(() => setSubscribeStatus('idle'), 3000);
+  };
 
   return (
     <div className="min-h-screen">
@@ -172,14 +208,35 @@ export default function EventsPage() {
                 Subscribe to our newsletter to receive updates about upcoming events, 
                 programs, and special announcements.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch max-w-md mx-auto px-4">
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 justify-center items-stretch max-w-md mx-auto px-4 relative">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={subscribeStatus === 'loading'}
                   placeholder="Enter your email"
-                  className="flex-1 h-12 text-center bg-white border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-church-gold text-foreground placeholder:text-muted-foreground"
+                  required
+                  className="flex-1 h-12 text-center bg-white border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-church-gold text-foreground placeholder:text-muted-foreground disabled:opacity-70"
                 />
-                <Button className="h-12 px-8 bg-church-red text-white hover:bg-church-red/90 transition-all font-bold">Subscribe</Button>
-              </div>
+                <Button 
+                  type="submit"
+                  disabled={subscribeStatus === 'loading'}
+                  className="h-12 px-8 bg-church-red text-white hover:bg-church-red/90 transition-all font-bold"
+                >
+                  {subscribeStatus === 'loading' ? 'Subscribing...' : 'Subscribe'}
+                </Button>
+                
+                {subscribeStatus === 'success' && (
+                  <div className="absolute -bottom-8 left-0 right-0 text-green-400 text-sm font-semibold">
+                    Successfully subscribed!
+                  </div>
+                )}
+                {subscribeStatus === 'error' && (
+                  <div className="absolute -bottom-8 left-0 right-0 text-red-300 text-sm font-semibold">
+                    Failed to subscribe. Please try again.
+                  </div>
+                )}
+              </form>
             </div>
           </div>
         </section>

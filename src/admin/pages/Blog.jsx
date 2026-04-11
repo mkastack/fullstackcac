@@ -4,6 +4,7 @@ import { uploadChurchAsset } from '../../lib/storage';
 
 export default function Blog() {
   const [postOpen, setPostOpen] = useState(false);
+  const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [rows, setRows] = useState([]);
@@ -63,7 +64,14 @@ export default function Blog() {
       status: 'Published'
     };
 
-    const { error } = await supabase.from('blog_posts').insert([postData]);
+    let error;
+    if (editingId) {
+      const { error: updateError } = await supabase.from('blog_posts').update(postData).eq('id', editingId);
+      error = updateError;
+    } else {
+      const { error: insertError } = await supabase.from('blog_posts').insert([postData]);
+      error = insertError;
+    }
     
     if (!error) {
       fetchPosts();
@@ -74,10 +82,22 @@ export default function Blog() {
           image: '',
       });
       setPostOpen(false);
+      setEditingId(null);
     } else {
       console.error('Error saving blog post:', error);
       alert('Failed to save post: ' + error.message);
     }
+  };
+
+  const openEdit = (post) => {
+    setEditingId(post.id);
+    setForm({
+      title: post.title,
+      author: post.author,
+      content: post.content || '',
+      image: post.image_url || '',
+    });
+    setPostOpen(true);
   };
 
   const posts = rows;
@@ -97,7 +117,11 @@ export default function Blog() {
             </p>
           </div>
           <button 
-            onClick={() => setPostOpen(true)}
+            onClick={() => {
+              setEditingId(null);
+              setForm({title: '', author: '', content: '', image: ''});
+              setPostOpen(true);
+            }}
             className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-[#9e2016] to-[#c0392b] px-8 py-4 font-bold text-white shadow-[0_12px_40px_rgba(28,27,27,0.06)] transition-all duration-300 hover:opacity-95"
           >
             <span className="material-symbols-outlined transition-transform group-hover:rotate-90">add</span>
@@ -213,7 +237,11 @@ export default function Blog() {
                         >
                           <span className="material-symbols-outlined">{post.status === 'Draft' ? 'publish' : 'visibility_off'}</span>
                         </button>
-                        <button className="rounded-xl p-2 text-[#5e5e5e] transition-all hover:bg-[#e5e2e1] hover:text-[#1c1b1b]" title="Edit">
+                        <button 
+                          className="rounded-xl p-2 text-[#5e5e5e] transition-all hover:bg-[#e5e2e1] hover:text-[#1c1b1b]" 
+                          title="Edit"
+                          onClick={() => openEdit(post)}
+                        >
                           <span className="material-symbols-outlined">edit</span>
                         </button>
                         <button 
@@ -254,7 +282,11 @@ export default function Blog() {
       </main>
 
       <button 
-        onClick={() => setPostOpen(true)}
+        onClick={() => {
+          setEditingId(null);
+          setForm({title: '', author: '', content: '', image: ''});
+          setPostOpen(true);
+        }}
         className="fixed bottom-8 right-8 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#9e2016] text-white shadow-2xl transition-transform active:scale-95 md:hidden"
       >
         <span className="material-symbols-outlined text-3xl">add</span>
@@ -266,8 +298,8 @@ export default function Blog() {
           <div className="w-full max-w-3xl overflow-hidden rounded-3xl bg-white shadow-2xl transition-all">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-neutral-100 px-8 py-6">
-              <h2 className="text-2xl font-extrabold tracking-tight text-[#1c1b1b]">Create New Post</h2>
-              <button className="rounded-full p-2 hover:bg-neutral-100" onClick={() => setPostOpen(false)}>
+              <h2 className="text-2xl font-extrabold tracking-tight text-[#1c1b1b]">{editingId ? 'Edit Post' : 'Create New Post'}</h2>
+              <button className="rounded-full p-2 hover:bg-neutral-100" onClick={() => { setPostOpen(false); setEditingId(null); }}>
                 <span className="material-symbols-outlined text-[#8d706c]">close</span>
               </button>
             </div>
@@ -352,9 +384,9 @@ export default function Blog() {
                 form="post-form"
                 type="submit"
               >
-                Save
+                {editingId ? 'Update Post' : 'Save Post'}
               </button>
-              <button className="px-8 py-4 font-bold text-[#5e5e5e] transition-colors hover:text-[#1c1b1b]" onClick={() => setPostOpen(false)} type="button">
+              <button className="px-8 py-4 font-bold text-[#5e5e5e] transition-colors hover:text-[#1c1b1b]" onClick={() => { setPostOpen(false); setEditingId(null); setForm({title: '', author: '', content: '', image: ''}); }} type="button">
                 Cancel
               </button>
             </div>
