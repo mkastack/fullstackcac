@@ -1,0 +1,19 @@
+.admin-scope {
+  font-family: Inter, sans-serif;
+  min-height: 100vh;
+  background: #f6f3f2;
+  color: #1c1b1b;
+}
+
+.admin-scope h1, 
+.admin-scope h2, 
+.admin-scope h3, 
+.admin-scope h4 {
+  font-family: Manrope, sans-serif;
+}
+
+.admin-scope .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  display: inline-block;
+  vertical-align: middle;
+}

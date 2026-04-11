@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sermons &amp; Media Management | Christ Apostolic Church</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-container": "#6f6867",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#ffdad5",
+                        "background": "#fcf9f8",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-container": "#ffe5e1",
+                        "outline": "#8d706c",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#e1dfdf",
+                        "inverse-surface": "#313030",
+                        "on-primary-fixed-variant": "#8e130c",
+                        "primary-fixed-dim": "#ffb4a9",
+                        "primary-container": "#c0392b",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-fixed-dim": "#cec4c3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#4c4544",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#9e2016",
+                        "on-surface-variant": "#59413d",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-tertiary-container": "#f3e8e6",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-variant": "#e5e2e1",
+                        "inverse-primary": "#ffb4a9",
+                        "on-background": "#1c1b1b",
+                        "surface-container": "#f0eded",
+                        "on-secondary-container": "#636262",
+                        "secondary": "#5e5e5e",
+                        "surface-tint": "#b02d21",
+                        "tertiary": "#57504f",
+                        "outline-variant": "#e1bfb9",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#410000",
+                        "surface": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary-fixed": "#e4e2e2",
+                        "tertiary-fixed": "#ebe0de",
+                        "on-tertiary-fixed": "#1f1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface antialiased">
+    <!-- Top Navigation Anchor -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200/20 dark:border-neutral-800/20 shadow-sm dark:shadow-none">
+        <div class="flex justify-between items-center h-20 px-8 w-full max-w-screen-2xl mx-auto">
+            <div
+                class="text-lg font-bold text-red-900 dark:text-red-500 flex flex-col leading-tight font-headline tracking-tight">
+                <span>Christ Apostolic</span>
+                <span class="text-xs font-semibold uppercase tracking-widest opacity-80">Church</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-1">
+                <a class="text-neutral-600 dark:text-neutral-400 hover:text-red-800 px-4 py-1.5 transition-colors"
+                    href="#">Home</a>
+                <a class="text-neutral-600 dark:text-neutral-400 hover:text-red-800 px-4 py-1.5 transition-colors"
+                    href="#">About</a>
+                <a class="bg-[#ffdad5] text-[#9e2016] rounded-full px-4 py-1.5 font-bold transition-all"
+                    href="#">Sermons</a>
+                <a class="text-neutral-600 dark:text-neutral-400 hover:text-red-800 px-4 py-1.5 transition-colors"
+                    href="#">Events</a>
+                <a class="text-neutral-600 dark:text-neutral-400 hover:text-red-800 px-4 py-1.5 transition-colors"
+                    href="#">Ministries</a>
+                <a class="text-neutral-600 dark:text-neutral-400 hover:text-red-800 px-4 py-1.5 transition-colors"
+                    href="#">Give</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors">
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </button>
+                <button
+                    class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-95 transition-all">
+                    Give
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-20 px-8 max-w-screen-2xl mx-auto">
+        <!-- Header Section -->
+        <header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+                <h1 class="text-5xl font-extrabold tracking-tight text-on-surface mb-2">Sermons &amp; Media</h1>
+                <p class="text-on-surface-variant text-lg">Manage and curate the spiritual teachings for your global
+                    congregation.</p>
+            </div>
+            <button
+                class="flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary px-8 py-4 rounded-full font-bold shadow-xl shadow-primary/10 transition-all self-start md:self-auto">
+                <span class="material-symbols-outlined">upload_file</span>
+                Upload New Sermon
+            </button>
+        </header>
+        <!-- Search & Filter Controls -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-8">
+            <div class="lg:col-span-7 relative">
+                <span
+                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+                <input
+                    class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline"
+                    placeholder="Search by title, scripture, or topic..." type="text" />
+            </div>
+            <div class="lg:col-span-3">
+                <div class="relative">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">person</span>
+                    <select
+                        class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 appearance-none text-on-surface-variant">
+                        <option>All Speakers</option>
+                        <option>Pastor John Doe</option>
+                        <option>Evangelist Sarah Smith</option>
+                        <option>Rev. Michael Brown</option>
+                    </select>
+                </div>
+            </div>
+            <div class="lg:col-span-2">
+                <div class="relative">
+                    <span
+                        class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">calendar_today</span>
+                    <input
+                        class="w-full pl-12 pr-4 py-4 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-on-surface-variant"
+                        placeholder="Date Range" type="text" />
+                </div>
+            </div>
+        </section>
+        <!-- Media Dashboard Content -->
+        <div class="bg-surface-container-low rounded-[2rem] p-4 lg:p-8">
+            <div class="overflow-x-auto">
+                <table class="w-full border-separate border-spacing-y-3">
+                    <thead>
+                        <tr class="text-left text-on-surface-variant font-label text-sm uppercase tracking-widest">
+                            <th class="px-6 pb-4 font-semibold">Sermon Details</th>
+                            <th class="px-6 pb-4 font-semibold">Speaker</th>
+                            <th class="px-6 pb-4 font-semibold text-center">Date</th>
+                            <th class="px-6 pb-4 font-semibold text-center">Format</th>
+                            <th class="px-6 pb-4 font-semibold text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="space-y-4">
+                        <!-- Sermon Row 1 -->
+                        <tr
+                            class="group bg-surface-container-lowest hover:bg-white transition-all shadow-sm hover:shadow-md rounded-2xl">
+                            <td class="px-6 py-5 first:rounded-l-2xl">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+                                        <img class="w-full h-full object-cover"
+                                            data-alt="close-up of an open bible on a wooden pulpit with soft dramatic sunlight hitting the pages"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPW7JU0akWYdlQla6r1cgEEq4rllkHiuHTsr5fQhGL_zUucW14IM4O3IZvlePHdBX3WQSkM4K_t81yhXEqcfioJlsAUGOUvAsU1_k8QRbjQu8ZFr-WUACLl1oaET_9HqYdCaehBUORr4zi2yIyI5sFTOKd_l_aT1ICYxkvId31XYozutnOMuhQ52G3s8aZv9WcIJ9Ga99L2mvEhg7DTrsyPeBXDo7-6zjaLm8pZL2iCdGR3fc4TYgXSf0MVGHUgdHvA2pRN2i0LWlA" />
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="font-bold text-on-surface group-hover:text-primary transition-colors">
+                                            The Power of Unwavering Faith</div>
+                                        <div class="text-sm text-on-surface-variant">Hebrews 11:1-6 • Sunday Service
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">
+                                        JD</div>
+                                    <span class="font-medium text-on-surface">Pastor John Doe</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center">
+                                <span class="text-sm font-medium text-on-surface-variant">Oct 24, 2023</span>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex justify-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-primary bg-primary-fixed/30 p-1.5 rounded-lg text-lg"
+                                        title="Video">videocam</span>
+                                    <span
+                                        class="material-symbols-outlined text-secondary bg-secondary-container p-1.5 rounded-lg text-lg"
+                                        title="Audio">headset</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 last:rounded-r-2xl text-right">
+                                <button
+                                    class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-outline">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Sermon Row 2 -->
+                        <tr
+                            class="group bg-surface-container-lowest hover:bg-white transition-all shadow-sm hover:shadow-md rounded-2xl">
+                            <td class="px-6 py-5 first:rounded-l-2xl">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+                                        <img class="w-full h-full object-cover"
+                                            data-alt="vibrant church choir singing with passion under warm stage lighting during a worship service"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPIkjtw9WjQTxaNVf3NBRFRu4hZ_HCIXSSgWbQzxaUFhUn5RiZptpYdbnFqJdwfdJC7_YJTs7LEAXDkEpDFql7DaMg0iV1WbVk77mEDUQg9YR1Sr2R-VQaxfUmzJNV-Z3jXLZBsysEnp6aqjvAG_38VCEfkbbDFSWJht--I7S_Ny-iAau0n-C3W8sw7kns_8EcfQk9v8-fXPK1OlW8hK8WDr6mqcQrRibf4_nXPuszjsQiRS-K4wjI0xNmzAQ485LAgHtUtAiIIWBS" />
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="font-bold text-on-surface group-hover:text-primary transition-colors">
+                                            Walking in Divine Purpose</div>
+                                        <div class="text-sm text-on-surface-variant">Jeremiah 29:11 • Youth Ministry
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-bold text-xs">
+                                        SS</div>
+                                    <span class="font-medium text-on-surface">Evang. Sarah Smith</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center">
+                                <span class="text-sm font-medium text-on-surface-variant">Oct 20, 2023</span>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex justify-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-secondary bg-secondary-container p-1.5 rounded-lg text-lg"
+                                        title="Audio">headset</span>
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant bg-surface-container-high p-1.5 rounded-lg text-lg"
+                                        title="Transcript">description</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 last:rounded-r-2xl text-right">
+                                <button
+                                    class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-outline">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Sermon Row 3 -->
+                        <tr
+                            class="group bg-surface-container-lowest hover:bg-white transition-all shadow-sm hover:shadow-md rounded-2xl">
+                            <td class="px-6 py-5 first:rounded-l-2xl">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+                                        <img class="w-full h-full object-cover"
+                                            data-alt="cinematic view of a sunset over a quiet mountain range symbolizing peace and spiritual reflection"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcV47oPlF6bVAqhQoZWE2CQBCSxeqrthYiYqZtOr-f0ZrjvK7Ir41Ln8E3TUNEHvfrG4vL5Io6LuO3O-Ol2HShiuIUj1cCb1OK44h3yirL1A8hSIt3t2mpxmw4aY5hWFkMkY-9MCGoW01UA8AfpCziCyIIotzykRclAdNEwQYSiaOXU7bgYm_RgEHnDnfCSGx6judFF_19B23RiC6OKR895ioEwmZGteW2UtESBtUAogERi2YawFrFXXD4f0lK6j5aePJUyOyB0Qo_" />
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="font-bold text-on-surface group-hover:text-primary transition-colors">
+                                            Finding Peace in the Storm</div>
+                                        <div class="text-sm text-on-surface-variant">Mark 4:35-41 • Wednesday Midweek
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed font-bold text-xs">
+                                        MB</div>
+                                    <span class="font-medium text-on-surface">Rev. Michael Brown</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center">
+                                <span class="text-sm font-medium text-on-surface-variant">Oct 17, 2023</span>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex justify-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-primary bg-primary-fixed/30 p-1.5 rounded-lg text-lg"
+                                        title="Video">videocam</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 last:rounded-r-2xl text-right">
+                                <button
+                                    class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-outline">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Sermon Row 4 -->
+                        <tr
+                            class="group bg-surface-container-lowest hover:bg-white transition-all shadow-sm hover:shadow-md rounded-2xl">
+                            <td class="px-6 py-5 first:rounded-l-2xl">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+                                        <img class="w-full h-full object-cover"
+                                            data-alt="silhouetted hands raised in worship during a contemporary christian concert with golden backlighting"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9iAyC99p8-15etsPZlwSnmODS7B6ea1dh-2WBBFI_9KQ837HKfq430YQGLZGzyjnomc_gQW8ulwhoLOeBadOd1fQ-WtbHtVfU6cw5tAiw7gII1C1CLMORJRt14IHMLBaAU9jSeCY1n0EpqPz4rwkJ4IyAqwDR72vD1IN5qbcQOoRektqaE7lIo1dREULdiqRph2eXcDzCCUMD4U6fy4-PFA33ETNL159ZgyjInFwX7qDAOlBOLMHye8XW6r8hwyTobVwubQ7uXYsv" />
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="font-bold text-on-surface group-hover:text-primary transition-colors">
+                                            The Heart of Worship</div>
+                                        <div class="text-sm text-on-surface-variant">John 4:23-24 • Sunday Service</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">
+                                        JD</div>
+                                    <span class="font-medium text-on-surface">Pastor John Doe</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center">
+                                <span class="text-sm font-medium text-on-surface-variant">Oct 10, 2023</span>
+                            </td>
+                            <td class="px-6 py-5">
+                                <div class="flex justify-center gap-2">
+                                    <span
+                                        class="material-symbols-outlined text-primary bg-primary-fixed/30 p-1.5 rounded-lg text-lg"
+                                        title="Video">videocam</span>
+                                    <span
+                                        class="material-symbols-outlined text-secondary bg-secondary-container p-1.5 rounded-lg text-lg"
+                                        title="Audio">headset</span>
+                                    <span
+                                        class="material-symbols-outlined text-on-surface-variant bg-surface-container-high p-1.5 rounded-lg text-lg"
+                                        title="Transcript">description</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 last:rounded-r-2xl text-right">
+                                <button
+                                    class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-outline">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination/Footer -->
+            <div
+                class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-outline-variant/20 pt-6 px-2">
+                <p class="text-on-surface-variant text-sm">Showing <span class="font-bold text-on-surface">1-4</span> of
+                    128 sermons</p>
+                <div class="flex items-center gap-2">
+                    <button
+                        class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface hover:bg-primary hover:text-on-primary transition-all">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button
+                        class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold">1</button>
+                    <button
+                        class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all">2</button>
+                    <button
+                        class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all">3</button>
+                    <span class="px-2">...</span>
+                    <button
+                        class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-all">32</button>
+                    <button
+                        class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface hover:bg-primary hover:text-on-primary transition-all">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Quick Insights Bento Section -->
+        <section class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+                class="bg-primary-fixed rounded-3xl p-8 flex flex-col justify-between h-48 relative overflow-hidden group">
+                <span
+                    class="material-symbols-outlined text-primary/10 text-9xl absolute -right-4 -bottom-4 rotate-12 group-hover:rotate-0 transition-transform duration-500">trending_up</span>
+                <span class="text-primary font-bold uppercase tracking-widest text-xs">Growth</span>
+                <div>
+                    <div class="text-4xl font-extrabold text-on-primary-fixed">12.4k</div>
+                    <div class="text-on-primary-fixed-variant font-medium">Monthly Media Plays</div>
+                </div>
+            </div>
+            <div
+                class="bg-surface-container-highest rounded-3xl p-8 flex flex-col justify-between h-48 relative overflow-hidden group">
+                <span
+                    class="material-symbols-outlined text-secondary/10 text-9xl absolute -right-4 -bottom-4 -rotate-12 group-hover:rotate-0 transition-transform duration-500">public</span>
+                <span class="text-secondary font-bold uppercase tracking-widest text-xs">Reach</span>
+                <div>
+                    <div class="text-4xl font-extrabold text-on-surface">42</div>
+                    <div class="text-on-surface-variant font-medium">Countries Tuning In</div>
+                </div>
+            </div>
+            <div
+                class="bg-tertiary-fixed rounded-3xl p-8 flex flex-col justify-between h-48 relative overflow-hidden group">
+                <span
+                    class="material-symbols-outlined text-tertiary/10 text-9xl absolute -right-4 -bottom-4 rotate-12 group-hover:rotate-0 transition-transform duration-500">inventory_2</span>
+                <span class="text-tertiary font-bold uppercase tracking-widest text-xs">Archive</span>
+                <div>
+                    <div class="text-4xl font-extrabold text-on-tertiary-fixed">1,248</div>
+                    <div class="text-on-tertiary-fixed-variant font-medium">Total Uploaded Items</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Bottom Nav for Mobile -->
+    <nav
+        class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t border-neutral-100 px-6 py-4 flex justify-between items-center z-50">
+        <button class="flex flex-col items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-bold">Home</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-primary">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+            <span class="text-[10px] font-bold">Sermons</span>
+        </button>
+        <button
+            class="bg-primary -mt-10 w-14 h-14 rounded-full flex items-center justify-center text-on-primary shadow-xl shadow-primary/40">
+            <span class="material-symbols-outlined">add</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined">event</span>
+            <span class="text-[10px] font-bold">Events</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined">groups</span>
+            <span class="text-[10px] font-bold">Ministries</span>
+        </button>
+    </nav>
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        id="upload-modal">
+        <div
+            class="bg-white dark:bg-neutral-900 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            <!-- Modal Header -->
+            <div
+                class="px-8 py-6 border-b border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
+                <h2 class="text-2xl font-extrabold text-on-surface tracking-tight">Upload New Sermon</h2>
+                <button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors">
+                    <span class="material-symbols-outlined text-outline">close</span>
+                </button>
+            </div>
+            <!-- Modal Body / Form -->
+            <div class="px-8 py-8 max-h-[70vh] overflow-y-auto scrollbar-hide">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Sermon Title -->
+                        <div class="md:col-span-2 space-y-2">
+                            <label
+                                class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Sermon
+                                Title</label>
+                            <input
+                                class="w-full px-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50"
+                                placeholder="Enter sermon title" type="text" />
+                        </div>
+                        <!-- Speaker Name -->
+                        <div class="space-y-2">
+                            <label
+                                class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Speaker
+                                Name</label>
+                            <input
+                                class="w-full px-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50"
+                                placeholder="e.g. Pastor John Doe" type="text" />
+                        </div>
+                        <!-- Sermon Series -->
+                        <div class="space-y-2">
+                            <label
+                                class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Sermon
+                                Series</label>
+                            <input
+                                class="w-full px-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50"
+                                placeholder="e.g. Walking in Faith" type="text" />
+                        </div>
+                        <!-- Service Date -->
+                        <div class="space-y-2">
+                            <label
+                                class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Service
+                                Date</label>
+                            <input
+                                class="w-full px-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all text-on-surface-variant"
+                                type="date" />
+                        </div>
+                        <!-- Scripture Reference -->
+                        <div class="space-y-2">
+                            <label
+                                class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Scripture
+                                Reference</label>
+                            <input
+                                class="w-full px-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50"
+                                placeholder="e.g. John 3:16" type="text" />
+                        </div>
+                    </div>
+                    <!-- Sermon Type (Chips) -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Sermon
+                            Type</label>
+                        <div class="flex flex-wrap gap-3">
+                            <label
+                                class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-high cursor-pointer transition-colors border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary-fixed">
+                                <input checked="" class="hidden" name="type" type="radio" />
+                                <span class="material-symbols-outlined text-lg">videocam</span>
+                                <span class="font-medium">Video</span>
+                            </label>
+                            <label
+                                class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-high cursor-pointer transition-colors border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary-fixed">
+                                <input class="hidden" name="type" type="radio" />
+                                <span class="material-symbols-outlined text-lg">headset</span>
+                                <span class="font-medium">Audio</span>
+                            </label>
+                            <label
+                                class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-high cursor-pointer transition-colors border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary-fixed">
+                                <input class="hidden" name="type" type="radio" />
+                                <span class="material-symbols-outlined text-lg">description</span>
+                                <span class="font-medium">Text</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- File Upload / URL -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Media
+                            Content</label>
+                        <div class="flex gap-2">
+                            <input
+                                class="flex-1 px-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50"
+                                placeholder="Enter media URL (YouTube, Vimeo, etc.)" type="text" />
+                            <button
+                                class="px-4 py-3.5 bg-surface-container-high hover:bg-surface-container-highest rounded-xl font-bold transition-all flex items-center gap-2 text-sm whitespace-nowrap text-on-surface-variant"
+                                type="button">
+                                <span class="material-symbols-outlined">upload</span>
+                                Choose File
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Description -->
+                    <div class="space-y-2">
+                        <label
+                            class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Description
+                            / Notes</label>
+                        <textarea
+                            class="w-full px-4 py-3.5 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 resize-none"
+                            placeholder="Add internal notes or public description..." rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="px-8 py-6 bg-surface-container-low/50 flex flex-col md:flex-row gap-3">
+                <button
+                    class="flex-1 py-4 bg-[#c0392b] hover:bg-[#a93226] text-white rounded-2xl font-extrabold text-lg shadow-xl shadow-red-900/20 transition-all hover:scale-[0.99] active:scale-95">
+                    Save Sermon
+                </button>
+                <button
+                    class="px-8 py-4 bg-transparent text-on-surface-variant hover:text-on-surface font-bold transition-colors">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

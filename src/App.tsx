@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
@@ -18,6 +18,8 @@ import Prayer from "./pages/Prayer";
 
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+
+import AdminLayout from "./admin/AdminLayout";
 
 import { ThemeProvider } from "./components/theme-provider";
 
@@ -42,7 +44,8 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/give" element={<Give />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/admin/*" element={<AdminLayout />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

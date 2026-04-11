@@ -9,6 +9,7 @@ const quickLinks = [
   { name: "Ministries", path: "/ministries" },
   { name: "Prayer Request", path: "/prayer" },
   { name: "Our Blog", path: "/blog" },
+  { name: "Admin Dashboard", path: "/admin" },
 ];
 
 const ministries = [
@@ -180,6 +181,9 @@ export function Footer() {
               </Link>
               <Link to="/terms" className="text-white/40 hover:text-white text-[10px] font-bold transition-colors uppercase tracking-widest">
                 Terms
+              </Link>
+              <Link to="/admin" className="text-white/40 hover:text-white text-[10px] font-bold transition-colors uppercase tracking-widest">
+                Admin
               </Link>
               <button
                 onClick={scrollToTop}
