@@ -208,6 +208,20 @@ export default function MinistriesPage() {
                             ))}
                           </ul>
                         </div>
+                        {ministry.contact && (
+                          <div className="mb-6">
+                            <h4 className="font-semibold text-foreground mb-2">Contact:</h4>
+                            <a
+                              href={`https://wa.me/${ministry.contact.replace(/[^0-9]/g, '')}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-church-gold hover:text-church-gold/80 transition-colors"
+                            >
+                              <span className="material-symbols-outlined text-sm">call</span>
+                              {ministry.contact}
+                            </a>
+                          </div>
+                        )}
                         <Button 
                           variant="churchPrimary" 
                           onClick={() => setJoinModalMinistry(ministry)}
