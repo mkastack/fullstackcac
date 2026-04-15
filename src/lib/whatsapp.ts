@@ -25,7 +25,23 @@ const ministryWhatsappMap: Array<{ matcher: RegExp; number: string; label: strin
   // Add further ministry mappings below when available.
 ];
 
-export function getMinistryWhatsappNumber(ministryName: string) {
+export async function getMinistryWhatsappNumber(ministryName: string) {
+  try {
+    // First try to get the contact from the ministries table
+    const { data, error } = await supabase
+      .from('ministries')
+      .select('contact')
+      .ilike('name', `%${ministryName}%`)
+      .single();
+
+    if (!error && data?.contact) {
+      return data.contact;
+    }
+  } catch (err) {
+    console.warn('Error fetching ministry contact from database:', err);
+  }
+
+  // Fallback to hardcoded map if database lookup fails
   const mapping = ministryWhatsappMap.find((item) => item.matcher.test(ministryName));
   return mapping ? mapping.number : null;
 }
@@ -34,8 +50,8 @@ export function formatWhatsAppMessage(payload: WhatsappPayload) {
   return `New ministry join request received.\n\nMinistry: ${payload.ministryName}\nName: ${payload.requesterName}\nPhone: ${payload.requesterPhone}\nReason: ${payload.reason}\nMain Aim: ${payload.aim}`;
 }
 
-export function getWhatsAppUrl(payload: WhatsappPayload) {
-  const number = getMinistryWhatsappNumber(payload.ministryName);
+export async function getWhatsAppUrl(payload: WhatsappPayload) {
+  const number = await getMinistryWhatsappNumber(payload.ministryName);
   if (!number) {
     console.info(`No WhatsApp number configured for ministry: ${payload.ministryName}`);
     return null;
@@ -49,7 +65,7 @@ export function getWhatsAppUrl(payload: WhatsappPayload) {
 }
 
 export async function notifyDepartmentHeadWhatsapp(payload: WhatsappPayload) {
-  const whatsappUrl = getWhatsAppUrl(payload);
+  const whatsappUrl = await getWhatsAppUrl(payload);
   if (!whatsappUrl) {
     console.info(`No WhatsApp number configured for ministry: ${payload.ministryName}`);
     return { success: false, error: 'No WhatsApp number configured' };
@@ -60,7 +76,7 @@ export async function notifyDepartmentHeadWhatsapp(payload: WhatsappPayload) {
     const { error } = await supabase.from('whatsapp_notifications').insert([
       {
         ministry_name: payload.ministryName,
-        recipient_number: getMinistryWhatsappNumber(payload.ministryName),
+        recipient_number: await getMinistryWhatsappNumber(payload.ministryName),
         message: formatWhatsAppMessage(payload),
         whatsapp_url: whatsappUrl,
         status: 'sent', // Mark as sent since we're opening WhatsApp automatically
@@ -78,7 +94,7 @@ export async function notifyDepartmentHeadWhatsapp(payload: WhatsappPayload) {
   // Automatically open WhatsApp with the pre-filled message
   console.log('Opening WhatsApp automatically:', {
     ministry: payload.ministryName,
-    number: getMinistryWhatsappNumber(payload.ministryName),
+    number: await getMinistryWhatsappNumber(payload.ministryName),
     url: whatsappUrl
   });
 
