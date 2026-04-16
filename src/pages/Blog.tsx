@@ -168,15 +168,15 @@ export default function BlogPage() {
         </section>
 
         {/* Filters & Search */}
-        <section className="py-8 bg-background border-b border-border sticky top-[64px] z-30 shadow-sm">
+        <section className="py-8 bg-background/80 backdrop-blur-xl border-b border-border sticky top-[64px] z-30 shadow-sm transition-all duration-300">
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
               <div className="relative w-full md:w-96">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-4 text-muted-foreground/60" />
                 <Input
                   type="text"
                   placeholder="Search articles..."
-                  className="pl-10 h-11"
+                  className="pl-10 h-11 bg-white/50 dark:bg-black/20 border-white/30 backdrop-blur-sm focus:bg-white dark:focus:bg-black/40 transition-all rounded-xl shadow-inner-soft"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -186,10 +186,10 @@ export default function BlogPage() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+                    className={`px-5 py-2.5 rounded-xl text-[13px] font-bold whitespace-nowrap transition-all duration-300 ${
                       selectedCategory === category
-                        ? "bg-church-red text-white shadow-md shadow-church-red/20"
-                        : "bg-muted text-muted-foreground hover:bg-muted/80"
+                        ? "bg-church-red text-white shadow-lg shadow-church-red/20 scale-105"
+                        : "bg-white/40 dark:bg-white/5 text-muted-foreground hover:bg-white/60 dark:hover:bg-white/10 border border-white/20 backdrop-blur-sm"
                     }`}
                   >
                     {category}
@@ -201,20 +201,24 @@ export default function BlogPage() {
         </section>
 
         {/* Blog Posts Grid */}
-        <section className="pt-16 pb-24 lg:pb-32 bg-church-cream">
-          <div className="container mx-auto px-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section className="pt-20 pb-24 lg:pb-32 bg-church-cream relative overflow-hidden">
+          {/* Decorative background elements for glass to pop */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-church-gold/5 rounded-full blur-[120px] -mr-64 -mt-64" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-church-red/5 rounded-full blur-[120px] -ml-64 -mb-64" />
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
               {loading ? (
                 Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="bg-card border border-border rounded-2xl overflow-hidden shadow-soft">
+                  <div key={i} className="bg-card/40 backdrop-blur-md border border-white/20 rounded-3xl overflow-hidden shadow-soft">
                     <Skeleton className="aspect-video w-full" />
-                    <div className="p-6 space-y-4">
+                    <div className="p-8 space-y-4">
                       <div className="flex gap-4">
                          <Skeleton className="h-4 w-20" />
                          <Skeleton className="h-4 w-20" />
                       </div>
                       <Skeleton className="h-7 w-full" />
-                      <Skeleton className="h-12 w-full" />
+                      <Skeleton className="h-16 w-full" />
                       <Skeleton className="h-10 w-24 rounded-full" />
                     </div>
                   </div>
@@ -222,48 +226,48 @@ export default function BlogPage() {
               ) : filteredPosts.map((post, index) => (
                 <motion.article
                   key={post.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-card border border-border rounded-2xl overflow-hidden shadow-soft hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
+                  transition={{ duration: 0.7, delay: index * 0.1 }}
+                  className="group bg-card/60 dark:bg-card/30 backdrop-blur-md border border-white/40 dark:border-white/10 rounded-3xl overflow-hidden shadow-soft hover:shadow-2xl hover:bg-card/80 hover:-translate-y-2 transition-all duration-500"
                 >
                   <div className="aspect-video overflow-hidden relative">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-church-red rounded-full text-[10px] font-bold uppercase tracking-wider">
+                    <div className="absolute top-5 left-5">
+                      <span className="px-4 py-1.5 bg-white/90 dark:bg-black/60 backdrop-blur-md text-church-red rounded-full text-[10px] font-black uppercase tracking-[0.15em] border border-white/20 shadow-xl">
                         {post.category}
                       </span>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-                      <div className="flex items-center gap-1.5 font-bold text-[10px] uppercase">
-                        <User className="w-3.5 h-3.5" />
+                  <div className="p-8">
+                    <div className="flex items-center gap-5 text-[11px] text-muted-foreground/80 mb-5 pb-5 border-b border-white/10 dark:border-white/5 uppercase tracking-widest font-black">
+                      <div className="flex items-center gap-2">
+                        <User className="w-3.5 h-3.5 text-church-red/60" />
                         {post.author}
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5" />
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-3.5 h-3.5 text-church-red/60" />
                         {post.date}
                       </div>
                     </div>
-                    <h3 className="font-serif font-bold text-xl text-foreground mb-3 leading-tight group-hover:text-church-red transition-colors line-clamp-2">
+                    <h3 className="font-serif font-bold text-2xl text-foreground mb-4 leading-tight group-hover:text-church-red transition-all duration-300 line-clamp-2 drop-shadow-sm">
                       {post.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm line-clamp-3 mb-6 font-body">
+                    <p className="text-muted-foreground text-[15px] line-clamp-3 mb-8 font-body leading-relaxed group-hover:text-foreground transition-colors duration-300">
                       {post.excerpt}
                     </p>
                     <Button 
                       variant="ghost" 
                       onClick={() => setReadModalPost(post)}
-                      className="p-0 text-church-red hover:text-church-red/80 hover:bg-transparent flex items-center gap-2 group/btn font-bold text-xs uppercase tracking-widest"
+                      className="p-0 text-church-red hover:text-church-red/80 hover:bg-transparent flex items-center gap-3 group/btn font-black text-xs uppercase tracking-[0.2em]"
                     >
-                      Read More
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                      Read Article
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-2" />
                     </Button>
                   </div>
                 </motion.article>
@@ -280,55 +284,55 @@ export default function BlogPage() {
 
       {/* Read Post Modal */}
       {readModalPost && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-md transition-all duration-500">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="w-full max-w-2xl bg-background dark:bg-card rounded-2xl shadow-2xl border border-border/50 relative max-h-[85vh] flex flex-col overflow-hidden"
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="w-full max-w-3xl bg-background/80 dark:bg-card/60 backdrop-blur-2xl rounded-[2rem] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)] border border-white/30 dark:border-white/10 relative max-h-[90vh] flex flex-col overflow-hidden"
           >
             <button 
               onClick={() => setReadModalPost(null)}
-              className="absolute top-4 right-4 z-10 w-8 h-8 bg-black/40 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-sm shadow-md text-sm"
+              className="absolute top-6 right-6 z-20 w-10 h-10 bg-black/40 hover:bg-church-red text-white rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-xl border border-white/20 group"
             >
-              ✕
+              <span className="text-xl group-hover:rotate-90 transition-transform">✕</span>
             </button>
             <div className="overflow-y-auto scrollbar-hide flex-1">
-              <div className="relative aspect-[16/9] sm:aspect-[21/9] bg-neutral-100 shrink-0">
+              <div className="relative aspect-[16/9] sm:aspect-[21/10] bg-neutral-100 shrink-0">
                 <img src={readModalPost.image} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5">
-                  <span className="px-2.5 py-1 bg-white/20 backdrop-blur-md text-white rounded-full text-[9px] font-bold uppercase tracking-wider mb-2.5 inline-block">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div className="absolute bottom-8 left-8 right-8">
+                  <span className="px-3 py-1 bg-church-red/90 backdrop-blur-md text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-4 inline-block shadow-lg border border-white/10">
                     {readModalPost.category}
                   </span>
-                  <h2 className="text-2xl md:text-3xl font-serif font-bold text-white leading-tight drop-shadow-md">
+                  <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight drop-shadow-2xl">
                     {readModalPost.title}
                   </h2>
                 </div>
               </div>
-              <div className="p-6 md:p-8">
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between text-[11px] text-muted-foreground mb-6 pb-6 border-b border-neutral-100 uppercase tracking-wider">
-                  <div className="flex flex-wrap items-center gap-3 font-bold">
-                    <div className="flex items-center gap-1.5">
-                      <User className="w-3.5 h-3.5" />
+              <div className="p-8 md:p-12">
+                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between text-[11px] text-muted-foreground mb-10 pb-10 border-b border-white/10 dark:border-white/5 uppercase tracking-[0.2em] font-black">
+                  <div className="flex flex-wrap items-center gap-6">
+                    <div className="flex items-center gap-2">
+                      <User className="w-4 h-4 text-church-red" />
                       {readModalPost.author}
                     </div>
-                    <span>•</span>
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-church-red" />
                       {readModalPost.date}
                     </div>
                   </div>
                   <Button
                     variant="outline"
-                    size="sm"
+                    size="lg"
                     onClick={() => handleSharePost(readModalPost)}
-                    className="w-full max-w-[220px] justify-center md:w-auto"
+                    className="w-full md:w-auto bg-white/5 hover:bg-church-red hover:text-white border-white/10 backdrop-blur-sm rounded-xl transition-all duration-300 group shadow-lg"
                   >
-                    <Share2 className="w-4 h-4" />
+                    <Share2 className="w-4 h-4 mr-2 group-hover:animate-bounce" />
                     Share Article
                   </Button>
                 </div>
-                <div className="prose prose-base text-foreground/90 dark:text-foreground/80 leading-relaxed whitespace-pre-wrap font-body">
+                <div className="prose prose-lg dark:prose-invert prose-church max-w-none text-foreground/90 leading-relaxed whitespace-pre-wrap font-body">
                   {readModalPost.content}
                 </div>
               </div>
