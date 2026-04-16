@@ -141,6 +141,7 @@ alter table blog_posts enable row level security;
 alter table ministry_join_requests enable row level security;
 alter table leaders enable row level security;
 alter table whatsapp_notifications enable row level security;
+alter table ministries enable row level security;
 
 -- Policies
 drop policy if exists "Allow all for everyone" on members;
@@ -166,6 +167,9 @@ create policy "Allow all for everyone" on ministry_join_requests for all using (
 
 drop policy if exists "Allow all for everyone" on leaders;
 create policy "Allow all for everyone" on leaders for all using (true) with check (true);
+
+drop policy if exists "Allow all for everyone" on ministries;
+create policy "Allow all for everyone" on ministries for all using (true) with check (true);
 
 drop policy if exists "Allow all for everyone" on whatsapp_notifications;
 create policy "Allow all for everyone" on whatsapp_notifications for all using (true) with check (true);

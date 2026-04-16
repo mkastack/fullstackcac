@@ -200,7 +200,7 @@ export default function AudioSermonsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-background relative">
+        <section className="pt-16 pb-28 lg:pb-36 bg-background relative">
           <div className="absolute inset-0">
             <img
               src={heroImage}

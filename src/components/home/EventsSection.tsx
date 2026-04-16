@@ -26,12 +26,27 @@ export function EventsSection() {
   }, []);
 
   const fetchEvents = async () => {
-    const { data, error } = await supabase
+    const today = new Date().toISOString().split('T')[0];
+    
+    // First, try to get upcoming events
+    let { data, error } = await supabase
       .from('events')
       .select('*')
-      .gte('date', new Date().toISOString().split('T')[0]) // Only future events
+      .gte('date', today)
       .order('date', { ascending: true })
-      .limit(3); // Show only 3 recent events
+      .limit(3);
+
+    // If no upcoming events, get the most recent past events
+    if (!error && (!data || data.length === 0)) {
+      const response = await supabase
+        .from('events')
+        .select('*')
+        .lt('date', today)
+        .order('date', { ascending: false })
+        .limit(3);
+      data = response.data;
+      error = response.error;
+    }
 
     if (!error && data) {
       setEvents(data.map(event => ({
@@ -40,10 +55,11 @@ export function EventsSection() {
         date: new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
         time: event.time || 'TBD',
         location: event.location || 'TBD',
-        description: event.description || 'Join us for this upcoming event.',
+        description: event.description || 'Join us for this church activity.',
         category: event.category || 'General',
         featured: event.is_featured || false,
-        image: event.image_url
+        image: event.image_url,
+        isPast: new Date(event.date) < new Date(today)
       })));
     }
     setLoading(false);
@@ -97,10 +113,15 @@ export function EventsSection() {
                       {/* Left Content */}
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className="px-4 py-1.5 bg-[#5b21b6]/10 text-[#5b21b6] rounded-full text-[10px] font-extrabold uppercase tracking-widest">
+                          <span className="px-4 py-1.5 bg-[#5b21b6]/10 text-[#5b21b6] dark:text-[#a78bfa] rounded-full text-[10px] font-extrabold uppercase tracking-widest">
                             {event.category}
                           </span>
-                          {event.featured && (
+                          {event.isPast && (
+                            <span className="px-4 py-1.5 bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-full text-[10px] font-extrabold uppercase tracking-widest shadow-sm">
+                              Event Concluded
+                            </span>
+                          )}
+                          {event.featured && !event.isPast && (
                             <span className="px-4 py-1.5 bg-[#ffdad5] text-[#ba1a1a] rounded-full text-[10px] font-extrabold uppercase tracking-widest">
                               Featured
                             </span>

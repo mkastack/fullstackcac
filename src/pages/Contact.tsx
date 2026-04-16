@@ -63,7 +63,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Info & Form */}
-        <section className="py-20 bg-church-cream">
+        <section className="pt-20 pb-28 lg:pb-36 bg-church-cream">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Contact Info */}

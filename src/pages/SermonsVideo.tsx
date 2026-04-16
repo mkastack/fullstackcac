@@ -97,7 +97,7 @@ export default function VideoSermonsPage() {
           </div>
           <div className="container mx-auto px-6 relative">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto text-center">
-              <span className="inline-block px-4 py-1.5 bg-white/10 text-white rounded-full text-sm font-medium mb-4">Video Sermons</span>
+              <span className="inline-block px-4 py-1.5 bg-[#9e2016]/10 text-white border border-white/20 backdrop-blur-md rounded-full text-[11px] font-black uppercase tracking-[0.2em] shadow-lg mb-4">Video Sermons</span>
               <h1 className="font-serif text-4xl sm:text-5xl font-bold mb-6">Watch Our Sermons</h1>
               <p className="text-white/80 text-lg">Experience powerful messages that will strengthen your faith and transform your life.</p>
             </motion.div>
@@ -152,10 +152,10 @@ export default function VideoSermonsPage() {
                           <Play className="w-8 h-8 text-white fill-white ml-1" />
                         </div>
                       </div>
-                      <span className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md text-white rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl border border-white/20 z-10">
+                      <span className="absolute top-4 left-4 flex items-center gap-2 px-4 py-2 bg-[#9e2016] text-white rounded-full text-[11px] font-black uppercase tracking-widest shadow-2xl border border-white/20 z-10">
                         <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/40 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                         </span>
                         Video Sermon
                       </span>
@@ -222,7 +222,7 @@ export default function VideoSermonsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-background relative">
+        <section className="pt-16 pb-28 lg:pb-36 bg-background relative">
           <div className="absolute inset-0">
             <img src={heroImage} alt="Church sanctuary" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-hero-overlay" />

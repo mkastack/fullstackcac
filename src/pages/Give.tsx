@@ -59,7 +59,7 @@ export default function GivePage() {
               animate={{ opacity: 1, y: 0 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <span className="inline-block px-4 py-1.5 bg-white/10 text-white rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-5 py-2 bg-black/40 text-white border border-white/20 backdrop-blur-md rounded-full text-[11px] font-black uppercase tracking-[0.2em] shadow-xl mb-6">
                 Support Our Mission
               </span>
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
@@ -74,7 +74,7 @@ export default function GivePage() {
         </section>
 
         {/* Giving Form */}
-        <section className="py-20 bg-church-cream">
+        <section className="pt-20 pb-28 lg:pb-36 bg-church-cream dark:bg-background">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl mx-auto">
               {submitted ? (

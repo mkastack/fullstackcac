@@ -153,7 +153,7 @@ export default function BlogPage() {
               animate={{ opacity: 1, y: 0 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <span className="inline-block px-4 py-1.5 bg-white/10 text-white rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-5 py-2 bg-black/40 text-white border border-white/20 backdrop-blur-md rounded-full text-[11px] font-black uppercase tracking-[0.2em] shadow-xl mb-6">
                 Inspire & Empower
               </span>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
@@ -200,7 +200,7 @@ export default function BlogPage() {
         </section>
 
         {/* Blog Posts Grid */}
-        <section className="py-16 bg-church-cream">
+        <section className="pt-16 pb-24 lg:pb-32 bg-church-cream">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {loading ? (
@@ -270,7 +270,7 @@ export default function BlogPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl relative max-h-[85vh] flex flex-col overflow-hidden"
+            className="w-full max-w-2xl bg-background dark:bg-card rounded-2xl shadow-2xl border border-border/50 relative max-h-[85vh] flex flex-col overflow-hidden"
           >
             <button 
               onClick={() => setReadModalPost(null)}
@@ -314,7 +314,7 @@ export default function BlogPage() {
                     Share Article
                   </Button>
                 </div>
-                <div className="prose prose-base dark:prose-invert max-w-none text-slate-700 leading-relaxed whitespace-pre-wrap font-body">
+                <div className="prose prose-base text-foreground/90 dark:text-foreground/80 leading-relaxed whitespace-pre-wrap font-body">
                   {readModalPost.content}
                 </div>
               </div>

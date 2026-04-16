@@ -6,7 +6,7 @@ import giveImage from "@/assets/12.jpeg";
 
 export function GiveSection() {
   return (
-    <section className="py-20 lg:py-28 bg-gradient-holy text-white relative overflow-hidden">
+    <section className="pt-20 pb-28 lg:pt-28 lg:pb-36 bg-gradient-holy text-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0">
         <img

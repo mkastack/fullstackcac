@@ -85,7 +85,7 @@ export default function Ministries() {
       description: form.description,
       icon: form.icon,
       image_url: form.image_url,
-      activities: form.activities,
+      activities: form.activities.filter(a => a.trim() !== ''),
       member_count: editingId ? (rows.find(r => r.id === editingId)?.members || 0) : 0
     };
 

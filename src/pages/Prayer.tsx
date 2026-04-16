@@ -126,7 +126,7 @@ export default function PrayerPage() {
               animate={{ opacity: 1, y: 0 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <span className="inline-block px-4 py-1.5 bg-white/10 text-white rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-5 py-2 bg-black/40 text-white border border-white/20 backdrop-blur-md rounded-full text-[11px] font-black uppercase tracking-[0.2em] shadow-xl mb-6">
                 Prayer & Testimonies
               </span>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
@@ -343,7 +343,7 @@ export default function PrayerPage() {
         </section>
 
         {/* Featured Testimonies */}
-        <section className="py-20 bg-church-cream relative">
+        <section className="pt-20 pb-28 lg:pb-36 bg-church-cream relative">
           <div className="absolute inset-0">
             <img
               src={heroImage2}

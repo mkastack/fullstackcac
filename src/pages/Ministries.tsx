@@ -251,7 +251,7 @@ export default function MinistriesPage() {
         </section>
 
         {/* Join CTA */}
-        <section className="py-16 bg-gradient-holy text-white">
+        <section className="pt-16 pb-28 lg:pb-36 bg-gradient-holy text-white">
           <div className="container mx-auto px-6 text-center">
             <h2 className="font-serif text-3xl font-bold mb-4">
               Ready to Get Involved?
