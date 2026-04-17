@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-church.jpg";
 import Image from "@/assets/2.jpeg"
 import { supabase } from "@/lib/supabase";
-import { Skeleton } from "@/components/ui/Skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const topics = ["All Topics", "Faith", "Prayer", "Purpose", "Salvation", "Family"];
 const PAGE_SIZE = 9;

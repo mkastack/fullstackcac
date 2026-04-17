@@ -12,7 +12,7 @@ import heroImage from "@/assets/649416000_122208445154563087_2317423105924190548
 import prayerImage from "@/assets/7.jpeg";
 import youthImage from "@/assets/4.jpeg";
 import conventionImage from "@/assets/619910776_122202868574563087_1389364340991551083_n.jpg";
-import { Skeleton } from "@/components/ui/Skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 
 
