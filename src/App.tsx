@@ -27,9 +27,36 @@ const queryClient = new QueryClient();
 // High-end Global Loading State
 const PageLoader = () => (
   <div className="fixed inset-0 bg-background flex items-center justify-center z-50">
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-12 h-12 border-4 border-church-gold/20 border-t-church-red rounded-full animate-spin" />
-      <p className="text-church-red font-bold text-sm uppercase tracking-widest animate-pulse">Loading Sanctuary...</p>
+    <div className="flex flex-col items-center gap-6">
+      <div className="relative w-24 h-24 sm:w-28 sm:h-28">
+        {/* Church Logo in the center */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src="/church-logo.png" 
+            alt="Church Logo" 
+            className="w-14 h-14 sm:w-16 sm:h-16 object-contain animate-pulse"
+          />
+        </div>
+        
+        {/* Outer premium spinning ring */}
+        <div className="absolute inset-0 border-[3px] border-church-gold/10 border-t-church-red rounded-full animate-spin" />
+        
+        {/* Secondary decorative ring */}
+        <div className="absolute -inset-2 border border-church-gold/5 rounded-full" />
+        
+        {/* Inner glow effect */}
+        <div className="absolute inset-0 rounded-full shadow-[0_0_30px_rgba(202,30,22,0.15)] animate-glow" />
+      </div>
+      
+      <div className="flex flex-col items-center gap-3">
+        <p className="text-church-red font-black text-[10px] sm:text-[11px] uppercase tracking-[0.4em] animate-pulse">
+          Loading Sanctuary
+        </p>
+        {/* Animated progress line */}
+        <div className="h-[2px] w-20 relative overflow-hidden bg-church-gold/10 rounded-full">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-church-gold to-transparent animate-[scroll_2s_linear_infinite]" />
+        </div>
+      </div>
     </div>
   </div>
 );
